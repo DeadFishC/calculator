@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Calculator</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body class="body">
+  <div class="container">
+    <div class="calculator">
+        <div class="calcName">NKCalc</div>
+        <div class="display" id="display">0</div>
+        <button class="regButton" onclick="clearCalc()">AC</button>
+        <button class="regButton">+/-</button>
+        <button class="regButton">%</button>
+        <button class="regButton orButton" onclick="operatorEntered('/')">÷</button>
+        <button class="regButton" onclick="displayOut(7)">7</button>
+        <button class="regButton" onclick="displayOut(8)">8</button>
+        <button class="regButton" onclick="displayOut(9)">9</button>
+        <button class="regButton orButton" onclick="operatorEntered('*')">✕</button>
+        <button class="regButton" onclick="displayOut(4)">4</button>
+        <button class="regButton" onclick="displayOut(5)">5</button>
+        <button class="regButton" onclick="displayOut(6)">6</button>
+        <button class="regButton orButton" onclick="operatorEntered('-')">⁠–⁠</button>
+        <button class="regButton" onclick="displayOut(1)">1</button>
+        <button class="regButton" onclick="displayOut(2)">2</button>
+        <button class="regButton" onclick="displayOut(3)">3</button>
+        <button class="regButton orButton" onclick="operatorEntered('+')">+</button>
+        <button class="regButton wideButton" onclick="displayOut(0)">0</button>
+        <button class="regButton" onclick="displayOut('.')">.</button>
+        <button class="regButton orButton" onclick="mustOperate()">=</button>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
