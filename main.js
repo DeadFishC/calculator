@@ -17,7 +17,10 @@ function multiply(a, b) {
 
 function divide(a, b) {
     if (b == 0)
-        return "DIV BY 0"
+    {
+        clearCalc();
+        return "DIV BY 0";
+    }
     return a / b;
 }
 
@@ -65,23 +68,41 @@ function mustOperate() {
 }
 
 function displayOut(n) {
+    if (n == '-')
+    {
+        if (clearWhenEntering && operatorUsed != "") {
+            document.getElementById("display").innerHTML = "-0";
+            clearWhenEntering = false;
+        }
+        else {
+            if (document.getElementById("display").innerHTML.toString().indexOf('-') == -1)
+                document.getElementById("display").innerHTML = '-' + document.getElementById("display").innerHTML;
+            else
+                document.getElementById("display").innerHTML = document.getElementById("display").innerHTML.toString().replace('-','');
+        }
+        if (operatorUsed == "")
+            aValue = document.getElementById("display").innerHTML;
+        else
+            bValue = document.getElementById("display").innerHTML;
+        return;
+    }
     if (n == ".") {
         if (clearWhenEntering) {
-            aValue = "0.";
-            document.getElementById("display").innerHTML = aValue;
+            document.getElementById("display").innerHTML = "0.";
             clearWhenEntering = false;
             return;
         }
         else {
-            if (aValue.indexOf('.') == -1) {
+            if (aValue.toString().indexOf('.') == -1) {
                 document.getElementById("display").innerHTML += '.';
             }
             return;
         }
     }
-    if (document.getElementById("display").innerHTML === "0" || clearWhenEntering ||
-            isNaN(document.getElementById("display").innerHTML)) {
-        document.getElementById("display").innerHTML = n;
+    if (document.getElementById("display").innerHTML === "0" || document.getElementById("display").innerHTML === "-0" 
+        || clearWhenEntering || isNaN(document.getElementById("display").innerHTML)) 
+    {
+        document.getElementById("display").innerHTML = document.getElementById("display").innerHTML.toString() == "-0" ? "-" + n : n;
         if (operatorUsed == "")
             aValue = document.getElementById("display").innerHTML;
         else {
@@ -100,9 +121,9 @@ function displayOut(n) {
 }
 
 function resultOut(res) {
-    return (res.toString().replace('.', '').length > 8 ? 
+    return res.toString().replace('.', '').replace('-', '').length > 8 ? 
             document.getElementById("display").innerHTML = res.toExponential(4) : 
-                document.getElementById("display").innerHTML = res);
+                document.getElementById("display").innerHTML = res;
 }
 
 function clearCalc() {
